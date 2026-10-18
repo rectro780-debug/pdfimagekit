@@ -10,6 +10,7 @@ Production:   gunicorn app:app --timeout 120
 import datetime
 import io
 import os
+import re
 import subprocess
 import tempfile
 import zipfile
@@ -251,6 +252,12 @@ def home():
 
 @app.get("/<slug>")
 def tool_page(slug):
+    # Google Search Console verification file (googleXXXX.html placed next to app.py)
+    if re.fullmatch(r"google[a-z0-9]+\.html", slug):
+        path = os.path.join(app.root_path, slug)
+        if os.path.isfile(path):
+            return send_file(path, mimetype="text/html")
+        abort(404)
     t = TOOLS_BY_SLUG.get(slug)
     if not t:
         abort(404)
