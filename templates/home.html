@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "_ads.html" import ad %}
+{% block title %}{{ SITE_NAME }} - Free PDF and Image Converter Online{% endblock %}
+{% block desc %}Convert image to PDF, PDF to image (JPG, PNG), merge PDF, compress and convert images online. Free, fast, no sign-up and no watermark.{% endblock %}
+{% block head %}
+<script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"WebSite","name":SITE_NAME,"url":abs_url("/")}|tojson }}</script>
+{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Free PDF and image converter</h1>
+  <p class="lead">Convert images to PDF, PDF to JPG or PNG, merge and split PDFs, and compress photos. Pick a tool, add your file and download the result in seconds.</p>
+  <div class="quick">
+    <a class="btn primary" href="/image-to-pdf">Image to PDF</a>
+    <a class="btn dark" href="/pdf-to-image">PDF to Image</a>
+  </div>
+</section>
+
+<div class="trust">
+  <span>No sign-up needed</span><span>No watermark</span><span>Files are not stored</span><span>Works on phone and desktop</span>
+</div>
+
+<section id="tools" class="block">
+  <h2>All tools</h2>
+  <div class="grid">
+    {% for t in main %}
+    <a class="tool" href="/{{ t.slug }}">
+      <div class="flow"><span class="chip c-{{ t.frm }}">{{ t.frm }}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-5-5l5 5-5 5"/></svg><span class="chip c-{{ t.to }}">{{ t.to }}</span></div>
+      <h3>{{ t.name }}</h3>
+      <p>{{ t.lead }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+{{ ad() }}
+
+<section class="block">
+  <h2>Popular conversions</h2>
+  <div class="tags">
+    {% for t in variants %}<a href="/{{ t.slug }}">{{ t.name }}</a>{% endfor %}
+  </div>
+</section>
+
+<section class="block prose">
+  <h2>Why use {{ SITE_NAME }}</h2>
+  <p>Everyday tasks like turning photos into a PDF for a form, saving a PDF page as an image, or shrinking a picture for an upload should not need an account or software. {{ SITE_NAME }} runs in your browser. You add a file, choose a few options and download the result.</p>
+  <p>Your files are processed in memory and removed as soon as the conversion is done. We do not add watermarks and we do not ask you to sign up.</p>
+  <h2>Common questions</h2>
+  <details><summary>Is {{ SITE_NAME }} free?</summary><p>Yes. All tools are free to use.</p></details>
+  <details><summary>How do I convert images to PDF?</summary><p>Open the <a href="/image-to-pdf">Image to PDF</a> tool, add your images, set the order and press Convert.</p></details>
+  <details><summary>How do I convert a PDF to JPG or PNG?</summary><p>Open the <a href="/pdf-to-image">PDF to Image</a> tool, upload your PDF, choose the format and press Convert.</p></details>
+  <details><summary>Is there a file size limit?</summary><p>You can upload up to 50 MB at a time.</p></details>
+</section>
+{% endblock %}

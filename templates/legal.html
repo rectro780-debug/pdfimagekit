@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} - {{ SITE_NAME }}{% endblock %}
+{% block desc %}{{ title }} for {{ SITE_NAME }}.{% endblock %}
+{% block content %}
+<nav class="crumbs"><a href="/">Home</a> / <span>{{ title }}</span></nav>
+<article class="prose narrow">
+  <h1>{{ title }}</h1>
+  {{ body }}
+</article>
+{% endblock %}

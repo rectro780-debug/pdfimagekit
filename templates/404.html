@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Page not found - {{ SITE_NAME }}{% endblock %}
+{% block desc %}The page you are looking for does not exist.{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Page not found</h1>
+  <p class="lead">That page does not exist. Try one of our tools instead.</p>
+  <div class="quick"><a class="btn primary" href="/">See all tools</a></div>
+</section>
+{% endblock %}

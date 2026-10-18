@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{{ SITE_NAME }} - Free PDF and Image Converter{% endblock %}</title>
+<meta name="description" content="{% block desc %}Free online tools to convert image to PDF, PDF to image, merge PDF, compress images and more. No sign-up, no watermark.{% endblock %}">
+<link rel="canonical" href="{{ canonical }}">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ SITE_NAME }}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.desc() }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232B59FF'/%3E%3Cpath d='M8 12h13l-3-3M24 20H11l3 3' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% if ADSENSE_CLIENT %}<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}" crossorigin="anonymous"></script>{% endif %}
+{% if GA_ID %}<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ GA_ID }}');</script>{% endif %}
+{% block head %}{% endblock %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/" aria-label="{{ SITE_NAME }} home">
+      <i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></i>{{ SITE_NAME }}
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="/image-to-pdf">Image to PDF</a>
+      <a href="/pdf-to-image">PDF to Image</a>
+      <a href="/merge-pdf">Merge PDF</a>
+      <a href="/compress-image">Compress</a>
+      <a href="/#tools">All tools</a>
+    </nav>
+  </header>
+  <main id="main">{% block content %}{% endblock %}</main>
+  <footer>
+    <div class="fcols">
+      <div>
+        <strong>{{ SITE_NAME }}</strong>
+        <p>Free online tools for PDF and image files. No sign-up, no watermark.</p>
+      </div>
+      <div>
+        <strong>Tools</strong>
+        {% for x in MAIN_TOOLS %}<a href="/{{ x.slug }}">{{ x.name }}</a>{% endfor %}
+      </div>
+      <div>
+        <strong>Company</strong>
+        <a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms of Use</a>
+      </div>
+    </div>
+    <p class="copy">&copy; {{ year }} {{ SITE_NAME }}. Uploaded files are not stored.</p>
+  </footer>
+</div>
+{% block scripts %}{% endblock %}
+</body>
+</html>
